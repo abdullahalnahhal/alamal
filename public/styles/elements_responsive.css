@@ -1,0 +1,344 @@
+@charset "utf-8";
+/* CSS Document */
+
+/******************************
+
+[Table of Contents]
+
+1. 1600px
+2. 1440px
+3. 1280px
+4. 1199px
+5. 1024px
+6. 991px
+7. 959px
+8. 880px
+9. 768px
+10. 767px
+11. 539px
+12. 479px
+13. 400px
+
+******************************/
+
+/************
+1. 1680px
+************/
+
+@media only screen and (max-width: 1680px)
+{
+	
+}
+
+/************
+1. 1600px
+************/
+
+@media only screen and (max-width: 1600px)
+{
+	
+}
+
+/************
+2. 1440px
+************/
+
+@media only screen and (max-width: 1440px)
+{
+	
+}
+
+/************
+3. 1380px
+************/
+
+@media only screen and (max-width: 1380px)
+{
+	
+}
+
+/************
+3. 1280px
+************/
+
+@media only screen and (max-width: 1280px)
+{
+	
+}
+
+/************
+4. 1199px
+************/
+
+@media only screen and (max-width: 1199px)
+{
+	.main_menu_contact
+	{
+		display: none;
+	}
+}
+
+/************
+4. 1100px
+************/
+
+@media only screen and (max-width: 1100px)
+{
+	
+}
+
+/************
+5. 1024px
+************/
+
+@media only screen and (max-width: 1024px)
+{
+	
+}
+
+/************
+6. 991px
+************/
+
+@media only screen and (max-width: 991px)
+{
+	.header.scrolled
+	{
+		-webkit-transform: none;
+		-moz-transform: none;
+		-ms-transform: none;
+		-o-transform: none;
+		transform: none;
+	}
+	.main_menu_list > li
+	{
+		margin-right: 50px;
+	}
+	.tabs
+	{
+		margin-top: 60px;
+	}
+	.loader_col:not(:last-child)
+	{
+		margin-bottom: 50px;
+	}
+	.milestone_col:not(:last-child)
+	{
+		margin-bottom: 80px;
+	}
+	.point_col:not(:last-child)
+	{
+		margin-bottom: 80px;
+	}
+	.footer_col:not(:last-child)
+	{
+		margin-bottom: 50px;
+	}
+}
+
+/************
+7. 959px
+************/
+
+@media only screen and (max-width: 959px)
+{
+	
+}
+
+/************
+8. 880px
+************/
+
+@media only screen and (max-width: 880px)
+{
+	
+}
+
+/************
+9. 768px
+************/
+
+@media only screen and (max-width: 768px)
+{
+	
+}
+
+/************
+10. 767px
+************/
+
+@media only screen and (max-width: 767px)
+{
+	.main_menu_content,
+	.register_login
+	{
+		display: none !important;
+	}
+	.logo
+	{
+		padding-left: 55px;
+	}
+	.logo_line_1
+	{
+		font-size: 24px;
+	}
+	.logo_img
+	{
+		top: -8px;
+		width: 50px;
+	}
+	.burger
+	{
+		display: block;
+	}
+	.main_menu
+	{
+		display: none;
+	}
+	.main_menu_social,
+	.main_menu_contact
+	{
+		display: none !important;
+	}
+}
+
+/************
+11. 575px
+************/
+
+@media only screen and (max-width: 575px)
+{
+	p{font-size: 12px;}
+	h1{font-size: 28px;}
+	.logo
+	{
+		padding-left: 46px;
+	}
+	.logo_img
+	{
+		width: 42px;
+	}
+	.logo_line_1
+	{
+		font-size: 20px;
+	}
+	.burger
+	{
+		margin-left: 12px;
+	}
+	.home_content
+	{
+		height: 372px;
+	}
+	.home_title
+	{
+	    font-size: 24px;
+	}
+	.home_breadcrumbs
+	{
+		margin-top: 16px;
+	}
+	.home_breadcrumbs ul li a,
+	.home_breadcrumbs ul li
+	{
+		font-size: 16px;
+	}
+	.link_button
+	{
+		width: 120px;
+		height: 40px;
+	}
+	.menu_register_login .register a,
+	.menu_register_login .login a
+	{
+		font-size: 12px;
+	}
+	.link_button a
+	{
+		font-size: 10px;
+		line-height: 40px;
+	}
+	.coins ul li
+	{
+		font-size: 10px;
+		margin-right: 4px;
+	}
+	.menu_item a
+	{
+		font-size: 12px;
+		line-height: 32px;
+	}
+	.section_title
+	{
+		font-size: 28px;
+	}
+	.section_subtitle
+	{
+		font-size: 10px;
+	}
+	.accordion div
+	{
+		font-size: 13px;
+	}
+	.tab
+	{
+		height: 40px;
+		line-height: 40px;
+		font-size: 12px;
+	}
+	.tab_panels
+	{
+		padding-top: 30px;
+		padding-bottom: 35px;
+	}
+	.footer_links ul li a
+	{
+		font-size: 12px;
+	}
+	.footer_newsletter_input
+	{
+		height: 36px;
+	}
+	.footer_newsletter_button
+	{
+		width: 100px;
+		height: 36px;
+		font-size: 10px;
+	}
+}
+
+/************
+11. 539px
+************/
+
+@media only screen and (max-width: 539px)
+{
+	
+}
+
+/************
+12. 480px
+************/
+
+@media only screen and (max-width: 480px)
+{
+	
+}
+
+/************
+13. 479px
+************/
+
+@media only screen and (max-width: 479px)
+{
+	h1{font-size: 24px;}
+}
+
+/************
+14. 400px
+************/
+
+@media only screen and (max-width: 400px)
+{
+	
+}
