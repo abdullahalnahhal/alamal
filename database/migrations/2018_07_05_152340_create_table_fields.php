@@ -15,8 +15,10 @@ class CreateTableFields extends Migration
     {
         Schema::create('fields', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('description');
-            $table->string('title')->unique();
+            $table->text('description_en');
+            $table->text('description_ar')->nullable();
+            $table->string('title_en')->unique();
+            $table->string('title_ar')->nullable()->unique();
             $table->text('file_name');
             $table->timestamps();
         });

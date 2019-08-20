@@ -15,7 +15,8 @@ class AboutWordText extends Migration
     {
         Schema::create('text_word', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('text');
+            $table->text('text_en');
+            $table->text('text_ar')->nullable();
             $table->timestamps();
         });
     }

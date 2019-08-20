@@ -15,8 +15,10 @@ class TableProducts extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('description');
-            $table->string('title');
+            $table->text('description_en');
+            $table->text('description_ar')->nullable();
+            $table->string('title_en');
+            $table->string('title_ar')->nullable();
             $table->text('file_name');
             $table->unsignedInteger('partner_id')->nullable();
             $table->timestamps();

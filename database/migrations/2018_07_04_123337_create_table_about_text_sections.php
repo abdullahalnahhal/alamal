@@ -15,8 +15,10 @@ class CreateTableAboutTextSections extends Migration
     {
         Schema::create('about_sections', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title',500);
-            $table->text('text');
+            $table->string('title_en',500);
+            $table->string('title_ar',500)->nullable();
+            $table->text('text_en');
+            $table->text('text_ar')->nullable();
             $table->text('file_name');
             $table->timestamps();
         });
