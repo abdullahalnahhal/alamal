@@ -13,9 +13,11 @@ class Products extends Model
      */
     protected $table = "products";
     protected $fillable = [
-        'title',
-        'description',
-        'file_name',
+        'title_en',
+        'title_ar',
+        'text_en',
+        'text_ar',
+        'file_path',
         'partner_id',
     ];
 }

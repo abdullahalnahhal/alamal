@@ -7,11 +7,12 @@
 @section('before-header')
 <div class="home_slider_container">
     <!-- Home Slider -->
-    <div class="owl-carousel owl-theme home_slider">             
+    <div class="owl-carousel owl-theme home_slider">
         <!-- Slider Item -->
         @foreach(App\Slider::all() as $slider)
         <div class="owl-item">
-            <div class="slider_background" style="background-image:url({{asset("slider")}}/{{$slider->name}})"></div>
+            <div class="slider_background" style="background-image:url({{asset("storage")}}/{{$slider->name}})">
+            </div>
             <div class="home_slider_content text-center">
                 <!-- <h1>A new World is coming</h1> -->
                 <div class="home_slider_text">{{$slider->{'description_'.App::getLocale()} }}</div>
@@ -20,8 +21,10 @@
         </div>
         @endforeach
     </div>
-    <div class="home_slider_nav home_slider_prev d-flex flex-column align-items-center justify-content-center"><img src="{{asset("images/arrow_l.png")}}" alt=""></div>
-    <div class="home_slider_nav home_slider_next d-flex flex-column align-items-center justify-content-center"><img src="{{asset("images/arrow_r.png")}}" alt=""></div>
+    <div class="home_slider_nav home_slider_prev d-flex flex-column align-items-center justify-content-center"><img
+            src="{{asset("images/arrow_l.png")}}" alt=""></div>
+    <div class="home_slider_nav home_slider_next d-flex flex-column align-items-center justify-content-center"><img
+            src="{{asset("images/arrow_r.png")}}" alt=""></div>
 </div>
 @endsection
 @section('content')
@@ -43,7 +46,8 @@
                             {{\App\TextWord::find(1)->{'text_'.App::getLocale()}??"" }}
                         </p>
                     </div>
-                    <div class="link_button intro_button"><a href="{{lRoute('about')}}">@lang("website/all.Read More")</a></div>
+                    <div class="link_button intro_button"><a href="{{lRoute('about')}}">@lang("website/all.Read
+                            More")</a></div>
                 </div>
             </div>
         </div>
@@ -59,20 +63,29 @@
                 <div class="services_slider_container">
                     <div class="owl-carousel owl-theme services_slider">
                         @foreach(App\Fields::all() as $field)
-                            <!-- Services Item -->
+                        <!-- Services Item -->
                         <div class="owl-item">
                             <div class="services_item d-flex flex-column align-items-center justify-content-center">
                                 <div class="services_item_bg"></div>
-                                <div class="services_icon"><img class="svg rounded-circle" src="{{asset("slider")}}/{{$field->file_name}}" alt="" style='width:100%!important'></div>
+                                <div class="services_icon"><img class="svg rounded-circle"
+                                        src="{{asset("storage")}}/{{$field->file_path}}" alt=""
+                                        style='width:100%!important'></div>
                                 <div class="services_title">{{$field->{'title_'.App::getLocale()} }}</div>
-                                <p class="services_text">{{str_limit($field->{'description_'.App::getLocale()} , 100, ' ...')}} </p>
-                                <div class="services_link"><a href="{{lRoute('fields.view', ['id'=>$field->title_en])}}">@lang("website/all.Read More")</a></div>
-                           </div>
+                                <p class="services_text">
+                                    {{str_limit($field->{'description_'.App::getLocale()} , 100, ' ...')}} </p>
+                                <div class="services_link"><a
+                                        href="{{lRoute('fields.view', ['id'=>$field->title_en])}}">@lang("website/all.Read
+                                        More")</a></div>
+                            </div>
                         </div>
                         @endforeach
                     </div>
-                    <div class="services_nav services_prev d-flex flex-column align-items-center justify-content-center"><img src="{{asset("images/arrow_l.png")}}" alt=""></div>
-                    <div class="services_nav services_next d-flex flex-column align-items-center justify-content-center"><img src="{{asset("images/arrow_r.png")}}" alt=""></div>
+                    <div
+                        class="services_nav services_prev d-flex flex-column align-items-center justify-content-center">
+                        <img src="{{asset("images/arrow_l.png")}}" alt=""></div>
+                    <div
+                        class="services_nav services_next d-flex flex-column align-items-center justify-content-center">
+                        <img src="{{asset("images/arrow_r.png")}}" alt=""></div>
                 </div>
             </div>
         </div>
@@ -95,14 +108,17 @@
             <!-- Info Item -->
             <div class="col-lg-4 info_col">
                 <div class="info_item text-center">
-                    <div class="info_image"><img src="{{asset("slider")}}/{{$product->file_name}}" alt="" class='rounded-circle'></div>
+                    <div class="info_image"><img src="{{asset("storage")}}/{{$product->file_path}}" alt=""
+                            class='rounded-circle'></div>
                     <div class="info_title">{{$product->{'title_'.App::getLocale()} }}</div>
                     <div class="info_text">
                         <p>{{str_limit($product->{'description_'.App::getLocale()}, 100, '...') }}</p>
                     </div>
                 </div>
                 <br>
-                <div class="news_button offset-3"><a href="{{lRoute('products.view', ['id'=>$field->title_en])}}">@lang("website/all.Read More")</a></div>
+                <div class="news_button offset-3"><a
+                        href="{{lRoute('products.view', ['id'=>$field->title_en])}}">@lang("website/all.Read More")</a>
+                </div>
             </div>
             @endforeach
         </div>
@@ -120,21 +136,23 @@
                 </div>
             </div>
         </div>
-        <div class="row news_row">  
+        <div class="row news_row">
             @foreach(App\News::all() as $news)
             <!-- News Item -->
             <div class="col-lg-4 news_col">
                 <div class="news_item">
                     <div class="news_image">
-                        <img src="{{asset("slider")}}/{{$news->image}}" style='width:100%'>
+                        <img src="{{asset("storage")}}/{{$news->image}}" style='width:100%'>
                     </div>
                     <div class="news_content">
                         <div class="news_title">{{$news->title}}</div>
                     </div>
-                    <div class="news_button"><a href="{{lRoute('news.view', ['id'=>$field->title_en])}}">@lang("website/all.Read More")</a></div>
+                    <div class="news_button"><a
+                            href="{{lRoute('news.view', ['id'=>$field->title_en])}}">@lang("website/all.Read More")</a>
+                    </div>
                 </div>
             </div>
-            @endforeach             
+            @endforeach
         </div>
     </div>
 </div>
@@ -142,7 +160,7 @@
 
 <div class="logos">
     <div class="container">
-       <div class="row">
+        <div class="row">
             <div class="col">
                 <div class="section_title_container text-center">
                     <div class="section_subtitle">@lang('website/all.take a look at our')</div>
@@ -150,7 +168,7 @@
                 </div>
             </div>
         </div>
-         <div class="row">
+        <div class="row">
             <div class="col">
                 <!-- Clients Slider -->
 
@@ -160,7 +178,7 @@
                         <!-- Slider Item -->
                         <a href='{{lRoute('partners.view', ['id'=>$partner->title_en])}}'>
                             <div class="owl-item clients_item">
-                                <img src="{{asset("slider")}}/{{$partner->file_name}}" alt="">
+                                <img src="{{asset("storage")}}/{{$partner->file_path}}" alt="">
                             </div>
                         </a>
                         @endforeach
@@ -175,5 +193,5 @@
 @endsection
 @push('js')
 <!-- Active js -->
-    <script src="{{asset('js/custom.js')}}"></script>
+<script src="{{asset('js/custom.js')}}"></script>
 @endpush

@@ -9,53 +9,65 @@ use App\AboutSections;
 
 class AboutController extends Controller
 {
-    public function index()
+
+
+
+    public function getAboutWord()
     {
-    	return view("admin.about.index",[
-            'word'=>TextWord::find(1),
-            'sections'=>AboutSections::get()
+        return TextWord::find(1);
+    }
+    public function getSections()
+    {
+        return AboutSections::get();
+    }
+    public function addWord()
+    {
+
+        $data = request()->validate([
+            'text_en' => 'required',
+            'text_ar' => 'required'
         ]);
+
+        $word = TextWord::firstOrNew([]);
+
+
+        $word->exists ? $word->update($data) : $word->create($data);
     }
-    public function addWord(Request $request)
+    public function addSection()
     {
-        $word = TextWord::find(1);
-        if (empty($word)) {
-            $word = new TextWord();
-        }
-        $word->text_en = $request->all()['about-word-text-en'];
-        $word->text_ar = $request->all()['about-word-text-ar'];
-        $word->save();
-        return back();
-    }
-    public function addSection(Request $request)
-    {
-    	$section = new AboutSections();
-        $section->title_en = $request->all()['section-title-en'];
-    	$section->title_ar = $request->all()['section-title-ar'];
-        $section->text_en = $request->all()['section-content-en'];
-        $section->text_ar = $request->all()['section-content-ar'];
-    	$section->file_name = $request->all()['file-name'];
-    	$section->save();
-        return back();
+
+        AboutSections::create(
+
+            request()->validate([
+                'text_en' => 'required',
+                'text_ar' => 'required',
+                'title_en' => 'required',
+                'title_ar' => 'required',
+                'file_path' => 'required'
+            ])
+        );
     }
     public function deleteSection($locale, $id)
     {
-        AboutSections::find($id)->delete();
-        return back();
+        AboutSections::destroy($id);
     }
-    public function getSection($locale, $id)
+
+    public function getSection($locale, AboutSections $section)
     {
-        return AboutSections::find($id);
+        return $section;
     }
+
     public function updateSection(Request $request, $locale, $id)
     {
-    	$section = AboutSections::find($id);
-        $section->title_en = $request->all()['section-title-en'];
-        $section->title_ar = $request->all()['section-title-ar'];
-        $section->text_en = $request->all()['section-content-en'];
-        $section->text_ar = $request->all()['section-content-ar'];
-    	$section->save();
-        return back();
+        AboutSections::find($id)->update(
+
+            request()->validate([
+                'title_ar' => 'required',
+                'title_en' => 'required',
+                'text_ar' => 'required',
+                'text_en' => 'required',
+                'file_path' => 'required'
+            ])
+        );
     }
-    
 }

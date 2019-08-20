@@ -13,10 +13,10 @@ class Downloads extends Model
      */
     protected $table = "downloads";
     protected $fillable = [
-        'file_name_en',
-        'file_name_ar',
-        'file_description_en',
-        'file_description_ar',
-        'path',
+        'title_ar',
+        'title_en',
+        'text_ar',
+        'text_en',
+        'file_path'
     ];
 }

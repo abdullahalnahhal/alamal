@@ -1,4 +1,5 @@
 <?php
+
 /*****Admin/contacts*****/
 Route::get('/', "ContactsController@index")->name('index');
-Route::post('/', "ContactsController@update")->name('update');
+Route::patch('/', "ContactsController@update")->name('update');

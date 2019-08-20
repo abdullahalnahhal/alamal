@@ -15,9 +15,11 @@ class TableProducts extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('description');
-            $table->string('title');
-            $table->text('file_name');
+            $table->string('title_en');
+            $table->string('title_ar');
+            $table->string('text_en');
+            $table->string('text_ar');
+            $table->text('file_path');
             $table->unsignedInteger('partner_id')->nullable();
             $table->timestamps();
             $table->foreign('partner_id')->references('id')->on('partners')->onDelete('cascade');

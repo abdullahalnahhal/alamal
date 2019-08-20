@@ -15,9 +15,9 @@ class Fields extends Model
     protected $fillable = [
         'title_en',
         'title_ar',
-        'description_en',
-        'description_ar',
-        'file_name',
+        'text_en',
+        'text_ar',
+        'file_path',
     ];
     public function sub_fields()
     {

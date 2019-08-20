@@ -35,6 +35,19 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
+
+        if (!app()->environment('testing')) {
+
+            header("Access-Control-Allow-Origin: *");
+
+
+            header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE, PATCH');
+            header("Access-Control-Allow-Credentials: true");
+
+            header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
+            header("Access-Control-Max-Age: 86400");
+        }
+
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
@@ -42,6 +55,7 @@ class RouteServiceProvider extends ServiceProvider
         //
         $this->mapAdminDashboardRoutes();
         $this->mapAdminAboutRoutes();
+        $this->mapAdminSliderRoutes();
         $this->mapAdminHomeRoutes();
         $this->mapAdminFieldsRoutes();
         $this->mapAdminSubFieldsRoutes();
@@ -54,6 +68,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapAdmiSubscribeRoutes();
         $this->mapAdmiNewsRoutes();
         $this->mapAdmiDownloadsRoutes();
+        $this->mapAdminMediaRoutes();
     }
 
     /**
@@ -66,8 +81,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
         Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web.php'));
     }
 
     /**
@@ -80,70 +95,78 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes()
     {
         Route::prefix('api')
-             ->middleware('api')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/api.php'));
+            ->middleware('api')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/api.php'));
     }
     protected function mapAdminDashboardRoutes()
     {
         Route::prefix('/{locale?}/admin')
-             ->middleware(['web', 'auth'])
-             ->name('admin.')
-             ->namespace('App\Http\Controllers\Admin')
-             ->group(base_path('routes/admin.php'));
+
+            ->name('admin.')
+            ->namespace('App\Http\Controllers\Admin')
+            ->group(base_path('routes/admin.php'));
     }
     protected function mapAdminHomeRoutes()
     {
         Route::prefix('/{locale?}/admin/home')
-             ->middleware(['web', 'auth'])
-             ->name('admin.home.')
-             ->namespace('App\Http\Controllers\Admin')
-             ->group(base_path('routes/admin/home/web.php'));
+            ->middleware(['auth:api'])
+            ->name('admin.home.')
+            ->namespace('App\Http\Controllers\Admin')
+            ->group(base_path('routes/admin/home/web.php'));
+    }
+    protected function mapAdminSliderRoutes()
+    {
+        Route::prefix('/{locale?}/admin/slider')
+            ->middleware(['auth:api'])
+            ->name('admin.slider.')
+            ->namespace('App\Http\Controllers\Admin')
+            ->group(base_path('routes/admin/slider/web.php'));
     }
     protected function mapAdminAboutRoutes()
     {
         Route::prefix('/{locale?}/admin/about')
-             ->middleware(['web', 'auth'])
-             ->name('admin.about.')
-             ->namespace('App\Http\Controllers\Admin')
-             ->group(base_path('routes/admin/about/web.php'));
+            ->middleware(['auth:api'])
+            ->name('admin.about.')
+            ->namespace('App\Http\Controllers\Admin')
+            ->group(base_path('routes/admin/about/web.php'));
     }
     protected function mapAdminFieldsRoutes()
     {
         Route::prefix('/{locale?}/admin/fields')
-             ->middleware(['web', 'auth'])
-             ->name('admin.fields.')
-             ->namespace('App\Http\Controllers\Admin')
-             ->group(base_path('routes/admin/fields/web.php'));
+            ->middleware(['auth:api'])
+            ->name('admin.fields.')
+            ->namespace('App\Http\Controllers\Admin')
+            ->group(base_path('routes/admin/fields/web.php'));
     }
     protected function mapAdminSubFieldsRoutes()
     {
         Route::prefix('/{locale?}/admin/sub-fields')
-             ->middleware(['web', 'auth'])
-             ->name('admin.sub-fields.')
-             ->namespace('App\Http\Controllers\Admin')
-             ->group(base_path('routes/admin/sub-fields/web.php'));
+            ->middleware(['auth:api'])
+            ->name('admin.sub-fields.')
+            ->namespace('App\Http\Controllers\Admin')
+            ->group(base_path('routes/admin/sub-fields/web.php'));
     }
     protected function mapAdminPartnersRoutes()
     {
         Route::prefix('/{locale?}/admin/partners')
-             ->middleware(['web', 'auth'])
-             ->name('admin.partners.')
-             ->namespace('App\Http\Controllers\Admin')
-             ->group(base_path('routes/admin/partners/web.php'));
+            ->middleware(['auth:api'])
+            ->name('admin.partners.')
+            ->namespace('App\Http\Controllers\Admin')
+            ->group(base_path('routes/admin/partners/web.php'));
     }
     protected function mapAdminProductsRoutes()
     {
         Route::prefix('/{locale?}/admin/products')
-             ->middleware(['web', 'auth'])
-             ->name('admin.products.')
-             ->namespace('App\Http\Controllers\Admin')
-             ->group(base_path('routes/admin/products/web.php'));
+            ->middleware(['auth:api'])
+            ->name('admin.products.')
+            ->namespace('App\Http\Controllers\Admin')
+            ->group(base_path('routes/admin/products/web.php'));
     }
     // protected function mapAdminProductsRoutes()
     // {
     //     Route::prefix('/{locale?}/admin/products')
-    //          ->middleware(['web', 'auth'])
+    //          ->middleware(['auth:api'])
     //          ->name('admin.products.')
     //          ->namespace('App\Http\Controllers\Admin')
     //          ->group(base_path('routes/admin/products/web.php'));
@@ -151,57 +174,65 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapAdminAchievementsRoutes()
     {
         Route::prefix('/{locale?}/admin/achievements')
-             ->middleware(['web', 'auth'])
-             ->name('admin.achievements.')
-             ->namespace('App\Http\Controllers\Admin')
-             ->group(base_path('routes/admin/achievements/web.php'));
+            ->middleware(['auth:api'])
+            ->name('admin.achievements.')
+            ->namespace('App\Http\Controllers\Admin')
+            ->group(base_path('routes/admin/achievements/web.php'));
     }
     protected function mapAdminContactsRoutes()
     {
         Route::prefix('/{locale?}/admin/contacts')
-             ->middleware(['web', 'auth'])
-             ->name('admin.contacts.')
-             ->namespace('App\Http\Controllers\Admin')
-             ->group(base_path('routes/admin/contacts/web.php'));
+            ->middleware(['auth:api'])
+            ->name('admin.contacts.')
+            ->namespace('App\Http\Controllers\Admin')
+            ->group(base_path('routes/admin/contacts/web.php'));
     }
     protected function mapAdminSettingsRoutes()
     {
         Route::prefix('/{locale?}/admin/settings')
-             ->middleware(['web', 'auth'])
-             ->name('admin.settings.')
-             ->namespace('App\Http\Controllers\Admin')
-             ->group(base_path('routes/admin/settings/web.php'));
+            ->middleware(['auth:api'])
+            ->name('admin.settings.')
+            ->namespace('App\Http\Controllers\Admin')
+            ->group(base_path('routes/admin/settings/web.php'));
     }
     protected function mapAdmiContactUsRoutes()
     {
         Route::prefix('/{locale?}/admin/contact-us')
-             ->middleware(['web', 'auth'])
-             ->name('admin.contact-us.')
-             ->namespace('App\Http\Controllers\Admin')
-             ->group(base_path('routes/admin/contact-us/web.php'));
+            ->middleware(['auth:api'])
+            ->name('admin.contact-us.')
+            ->namespace('App\Http\Controllers\Admin')
+            ->group(base_path('routes/admin/contact-us/web.php'));
     }
     protected function mapAdmiSubscribeRoutes()
     {
         Route::prefix('/{locale?}/admin/subscribe')
-             ->middleware(['web', 'auth'])
-             ->name('admin.subscribe.')
-             ->namespace('App\Http\Controllers\Admin')
-             ->group(base_path('routes/admin/subscribe/web.php'));
+            ->middleware(['auth:api'])
+            ->name('admin.subscribe.')
+            ->namespace('App\Http\Controllers\Admin')
+            ->group(base_path('routes/admin/subscribe/web.php'));
     }
     protected function mapAdmiNewsRoutes()
     {
         Route::prefix('/{locale?}/admin/news')
-             ->middleware(['web', 'auth'])
-             ->name('admin.news.')
-             ->namespace('App\Http\Controllers\Admin')
-             ->group(base_path('routes/admin/news/web.php'));
+            ->middleware(['auth:api'])
+            ->name('admin.news.')
+            ->namespace('App\Http\Controllers\Admin')
+            ->group(base_path('routes/admin/news/web.php'));
     }
     protected function mapAdmiDownloadsRoutes()
     {
         Route::prefix('/{locale?}/admin/downloads')
-             ->middleware(['web', 'auth'])
-             ->name('admin.downloads.')
-             ->namespace('App\Http\Controllers\Admin')
-             ->group(base_path('routes/admin/downloads/web.php'));
+            ->middleware(['auth:api'])
+            ->name('admin.downloads.')
+            ->namespace('App\Http\Controllers\Admin')
+            ->group(base_path('routes/admin/downloads/web.php'));
+    }
+    protected function mapAdminMediaRoutes()
+    {
+        Route::prefix('/{locale?}/admin/media')
+            ->middleware(['auth:api'])
+            ->name('admin.media.')
+            ->namespace('App\Http\Controllers\Admin')
+            ->group(base_path('routes/admin/media/web.php'));
     }
 }

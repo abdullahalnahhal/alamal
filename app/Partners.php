@@ -13,9 +13,11 @@ class Partners extends Model
      */
     protected $table = "partners";
     protected $fillable = [
-        'title',
-        'description',
-        'file_name',
+        'title_en',
+        'title_ar',
+        'text_en',
+        'text_ar',
+        'file_path',
     ];
     public function products()
     {

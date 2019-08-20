@@ -42,7 +42,7 @@
                 <!-- Service -->
                 <div class="col-lg-4 col-md-6 point_col">
                     <div class="point clearfix">
-                        <div class="point_image"><img class="rounded-circle" src="{{asset("slider/$achievement->file_name")}}" alt=""></div>
+                        <div class="point_image"><img class="rounded-circle" src="{{asset("storage/$achievement->file_path")}}" alt=""></div>
                         <div class="point_content">
                             <a href="{{lRoute('achievements', ['id'=>$achievement->id])}}"><div class="point_title">{{$field->{'title_'.App::getLocale()} }}</div></a>
                             <div class="point_text">

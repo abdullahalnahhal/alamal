@@ -15,10 +15,10 @@ class CreateTablePlog extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('image',300);
-            $table->string('title',300);
-            $table->text('content',300);
-            $table->tinyInteger('publish')->comment('if publish 1 else 0');
+            $table->text('file_path', 300);
+            $table->string('title', 300);
+            $table->text('text', 300);
+            $table->tinyInteger('published')->comment('if publish 1 else 0');
             $table->timestamps();
         });
     }

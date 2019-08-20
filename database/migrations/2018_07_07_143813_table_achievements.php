@@ -15,8 +15,10 @@ class TableAchievements extends Migration
     {
         Schema::create('achievements', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('description');
-            $table->string('title');
+            $table->string('title_en');
+            $table->string('title_ar');
+            $table->text('text_en');
+            $table->text('text_ar');
             $table->text('file_name');
             $table->timestamps();
         });

@@ -5,7 +5,8 @@
 @extends('website.layout.body')
 @section('title', trans('website/header.About'))
 @section('before-header')
-<div class="home_background parallax-window" data-parallax="scroll" data-image-src="{{asset("images/about.jpg")}}" data-speed="0.8"></div>
+<div class="home_background parallax-window" data-parallax="scroll" data-image-src="{{asset("images/about.jpg")}}"
+    data-speed="0.8"></div>
 <div class="container">
     <div class="row">
         <div class="col">
@@ -60,8 +61,9 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                 <div class="features_images clearfix">
-                    <div class="features_image_2" ><img src="{{asset("slider")}}/{{$section->file_name}}" alt="" style='width:100%'></div>
+                <div class="features_images clearfix">
+                    <div class="features_image_2"><img src="{{asset("storage")}}/{{$section->file_path}}" alt=""
+                            style='width:100%'></div>
                 </div>
             </div>
         </div>

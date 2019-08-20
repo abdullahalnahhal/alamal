@@ -17,6 +17,6 @@ class AboutSections extends Model
         'text_ar',
         'title_en',
         'title_ar',
-        'file_name'
+        'file_path'
     ];
 }

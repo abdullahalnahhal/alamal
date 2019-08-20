@@ -13,10 +13,12 @@ class SubFields extends Model
      */
     protected $table = "sub_fields";
     protected $fillable = [
-        'title',
-        'description',
-        'file_name',
-        'field_id',
+        'title_en',
+        'title_ar',
+        'text_en',
+        'text_ar',
+        'file_path',
+        'field_id'
     ];
     public function field()
     {

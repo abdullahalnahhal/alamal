@@ -5,7 +5,7 @@
 @extends('website.layout.body')
 @section('title', ucwords($sub_field->title))
 @section('before-header')
-<div class="home_background parallax-window" data-parallax="scroll" data-image-src="{{asset("slider/$sub_field->file_name")}}" data-speed="0.8"></div>
+<div class="home_background parallax-window" data-parallax="scroll" data-image-src="{{asset("storage/$sub_field->file_path")}}" data-speed="0.8"></div>
 <div class="container">
     <div class="row">
         <div class="col">

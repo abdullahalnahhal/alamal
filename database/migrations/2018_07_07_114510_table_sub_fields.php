@@ -15,9 +15,11 @@ class TableSubFields extends Migration
     {
         Schema::create('sub_fields', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('description');
-            $table->string('title');
-            $table->text('file_name');
+            $table->string('title_en');
+            $table->string('title_ar');
+            $table->string('text_en');
+            $table->string('text_ar');
+            $table->text('file_path');
             $table->unsignedInteger('field_id');
             $table->timestamps();
             $table->foreign('field_id')->references('id')->on('fields')->onDelete('cascade');

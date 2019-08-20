@@ -15,9 +15,18 @@ class TableContacts extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('value');
-            $table->string('title',200);
-            $table->string('icon',100);
+
+            $table->json('address')->nullable();
+            $table->json('phone')->nullable();
+            $table->json('working_days')->nullable();
+            $table->json('email')->nullable();
+            $table->json('facebook')->nullable();
+            $table->json('twitter')->nullable();
+            $table->json('instagram')->nullable();
+            $table->json('youtube')->nullable();
+            $table->json('linkedin')->nullable();
+            $table->json('google_plus')->nullable();
+
             $table->timestamps();
         });
     }

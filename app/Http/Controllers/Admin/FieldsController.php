@@ -10,34 +10,38 @@ class FieldsController extends Controller
 {
     public function index()
     {
-    	return view("admin.fields.index",[
-            'fields'=>Fields::all()
-        ]);
+        return Fields::all();
     }
-    public function add(Request $request)
+    public function add()
     {
-    	$field = new Fields();
-        $field->title_en = $request->all()['section-title-en'];
-    	$field->title_ar = $request->all()['section-title-ar'];
-        $field->description_en = $request->all()['section-content-en'];
-        $field->description_ar = $request->all()['section-content-ar'];
-    	$field->file_name = $request->all()['file-name'];
-    	$field->save();
-        return back();
+
+
+        Fields::create(
+
+            request()->validate([
+                'title_ar' => 'required',
+                'title_en' => 'required',
+                'text_ar' => 'required',
+                'text_en' => 'required',
+                'file_path' => 'required'
+            ])
+        );
     }
-    public function update(Request $request, $locale, $id)
+    public function update($locale, $field)
     {
-        $field = Fields::find($id);
-        $field->title_en = $request->all()['title-en'];
-        $field->title_ar = $request->all()['title-ar'];
-        $field->description_en = $request->all()['description-en'];
-        $field->description_ar = $request->all()['description-ar'];
-        $field->save();
-        return back();
+        Fields::find($field)->update(
+
+            request()->validate([
+                'title_ar' => 'required',
+                'title_en' => 'required',
+                'text_ar' => 'required',
+                'text_en' => 'required',
+                'file_path' => 'required'
+            ])
+        );
     }
     public function delete($locale, $id)
     {
-        Fields::find($id)->delete();
-        return back();
+        Fields::destroy($id);
     }
 }

@@ -42,7 +42,7 @@
                 <!-- Service -->
                 <div class="col-lg-4 col-md-6 point_col text-{{getStyle(App::getLocale())['dir-full']}}" dir="{{getStyle(App::getLocale())['dir']}}">
                     <div class="point clearfix">
-                        <div class="point_image"><img class="rounded-circle" src="{{asset("slider/$field->file_name")}}" alt=""></div>
+                        <div class="point_image"><img class="rounded-circle" src="{{asset("storage/$field->file_path")}}" alt=""></div>
                         <div class="point_content">
                             <a href="{{lRoute('fields.view', ['name'=>$field->title_en])}}"><div class="point_title">{{$field->{'title_'.App::getLocale()} }}</div></a>
                             <div class="point_text">

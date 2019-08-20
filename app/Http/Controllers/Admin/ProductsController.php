@@ -4,44 +4,47 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Partners;
 use App\Products;
 
 class ProductsController extends Controller
 {
     public function index()
     {
-    	return view("admin.products.index",[
-            'partners'=>Partners::all(),
-            'products'=>Products::all(),
-        ]);
+        return Products::all();
     }
-    public function add(Request $request)
+    public function add()
     {
-    	$slider = new Products();
-        $slider->title_en = $request->all()['title-en'];
-    	$slider->title_ar = $request->all()['title-ar'];
-        $slider->description_en = $request->all()['content-en'];
-        $slider->description_ar = $request->all()['content-ar'];
-        $slider->file_name = $request->all()['file-name'];
-        $slider->partner_id = $request->all()['partner'];
-    	$slider->save();
-        return back();
+
+
+        Products::create(
+
+            request()->validate([
+                'title_ar' => 'required',
+                'title_en' => 'required',
+                'text_ar' => 'required',
+                'text_en' => 'required',
+                'file_path' => 'required',
+                'partner_id' => 'required'
+            ])
+        );
     }
-    public function update(Request $request, $locale, $id)
+    public function update($locale, $product)
     {
-        $slider = Products::find($id);
-        $slider->title_en = $request->all()['title-en'];
-        $slider->title_ar = $request->all()['title-ar'];
-        $slider->description_en = $request->all()['content-en'];
-        $slider->description_ar = $request->all()['content-ar'];
-        $slider->partner_id = $request->all()['partner'];
-        $slider->save();
-        return back();
+
+        Products::find($product)->update(
+
+            request()->validate([
+                'title_ar' => 'required',
+                'title_en' => 'required',
+                'text_ar' => 'required',
+                'text_en' => 'required',
+                'file_path' => 'required',
+                'partner_id' => 'required'
+            ])
+        );
     }
     public function delete($locale, $id)
     {
-        Products::find($id)->delete();
-        return back();
+        Products::destroy($id);
     }
 }

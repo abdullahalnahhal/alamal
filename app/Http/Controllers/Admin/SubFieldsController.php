@@ -3,45 +3,46 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\SubFields;
-use App\Fields;
 
 class SubFieldsController extends Controller
 {
     public function index()
     {
-    	return view("admin.sub-fields.index",[
-            'sub_fields'=>SubFields::all(),
-            'fields'=>Fields::all(),
-        ]);
+        return SubFields::all();
     }
-    public function add(Request $request)
+    public function add()
     {
-    	$slider = new SubFields();
-        $slider->field_id = $request->all()['field'];
-        $slider->title_en = $request->all()['title-en'];
-    	$slider->title_ar = $request->all()['title-ar'];
-        $slider->description_en = $request->all()['content-en'];
-        $slider->description_ar = $request->all()['content-ar'];
-        $slider->file_name = $request->all()['file-name'];
-    	$slider->save();
-        return back();
+
+
+        SubFields::create(
+
+            request()->validate([
+                'title_ar' => 'required',
+                'title_en' => 'required',
+                'text_ar' => 'required',
+                'text_en' => 'required',
+                'file_path' => 'required',
+                'field_id' => 'required'
+            ])
+        );
     }
-    public function update(Request $request, $locale, $id)
+    public function update($locale, $field)
     {
-        $slider = SubFields::find($id);
-        $slider->field_id = $request->all()['field'];
-        $slider->title_en = $request->all()['title-en'];
-        $slider->title_ar = $request->all()['title-ar'];
-        $slider->description_en = $request->all()['content-en'];
-        $slider->description_ar = $request->all()['content-ar'];
-        $slider->save();
-        return back();
+        SubFields::find($field)->update(
+
+            request()->validate([
+                'title_ar' => 'required',
+                'title_en' => 'required',
+                'text_ar' => 'required',
+                'text_en' => 'required',
+                'file_path' => 'required',
+                'field_id' => 'required'
+            ])
+        );
     }
     public function delete($locale, $id)
     {
-        SubFields::find($id)->delete();
-        return back();
+        SubFields::destroy($id);
     }
 }

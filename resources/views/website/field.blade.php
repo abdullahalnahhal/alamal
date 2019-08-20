@@ -52,7 +52,7 @@
                     @foreach($field->sub_fields as $field)
                     <!-- Service -->
                     <div class="service text-{{getStyle(App::getLocale())['dir-full']}}">
-                        <div class="service_icon "><img src="{{asset("slider/$field->file_name")}}" class="svg" alt=""></div>
+                        <div class="service_icon "><img src="{{asset("storage/$field->file_path")}}" class="svg" alt=""></div>
                         <div class="service_title">{{$field->{'title_'.App::getLocale()} }}</div>
                         <div class="service_text">
                             <p>{{str_limit($field->{'description_'.App::getLocale()}, 100, ' ...' )}}</p>

@@ -10,37 +10,39 @@ class DownloadsController extends Controller
 {
     public function index()
     {
-    	return view("admin.downloads.index",[
-            'downloads'=>Downloads::all()
-        ]);
+        return Downloads::all();
     }
-    public function add(Request $request)
+    public function add()
     {
-    	$slider = new Downloads();
-        $slider->file_name_en = $request->all()['file-en'];
-    	$slider->file_name_ar = $request->all()['file-ar'];
 
-        $slider->file_description_en = $request->all()['description-en'];
-        $slider->file_description_ar = $request->all()['description-ar'];
+        Downloads::create(
 
-    	$slider->path = $request->all()['file-name'];
-
-    	$slider->save();
-        return back();
+            request()->validate([
+                'title_ar' => 'required',
+                'title_en' => 'required',
+                'text_ar' => 'required',
+                'text_en' => 'required',
+                'file_path' => 'required'
+            ])
+        );
     }
-    public function update(Request $request, $locale, $id)
+    public function update($locale, $download)
     {
-        $slider = Achievements::find($id);
-        $slider->title_en = $request->all()['title-en'];
-        $slider->title_ar = $request->all()['title-ar'];
-        $slider->description_en = $request->all()['description-en'];
-        $slider->description_ar = $request->all()['description-ar'];
-        $slider->save();
-        return back();
+
+
+        Downloads::find($download)->update(
+
+            request()->validate([
+                'title_ar' => 'required',
+                'title_en' => 'required',
+                'text_ar' => 'required',
+                'text_en' => 'required',
+                'file_path' => 'required'
+            ])
+        );
     }
     public function delete($locale, $id)
     {
-        Achievements::find($id)->delete();
-        return back();
+        Downloads::destroy($id);
     }
 }

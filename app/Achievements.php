@@ -13,8 +13,10 @@ class Achievements extends Model
      */
     protected $table = "achievements";
     protected $fillable = [
-        'title',
-        'description',
+        'title_ar',
+        'title_en',
+        'text_ar',
+        'text_en',
         'file_name',
     ];
 }

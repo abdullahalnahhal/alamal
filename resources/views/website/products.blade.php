@@ -42,7 +42,7 @@
                 <!-- Service -->
                 <div class="col-lg-4 col-md-6 point_col">
                     <div class="point clearfix">
-                        <div class="point_image"><img class="rounded-circle" src="{{asset("slider/$product->file_name")}}" alt=""></div>
+                        <div class="point_image"><img class="rounded-circle" src="{{asset("storage/$product->file_path")}}" alt=""></div>
                         <div class="point_content">
                             <a href="{{lRoute('products.view', ['name'=>$product->title_en])}}"><div class="point_title">{{$product->{'title_'.App::getLocale()} }}</div></a>
                             <div class="point_text">

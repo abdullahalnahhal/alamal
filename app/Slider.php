@@ -13,8 +13,10 @@ class Slider extends Model
      */
     protected $table = "slider";
     protected $fillable = [
-        'name',
-        'description_en',
-        'description_ar',
+        'title_en',
+        'title_ar',
+        'text_en',
+        'text_ar',
+        'file_path',
     ];
 }

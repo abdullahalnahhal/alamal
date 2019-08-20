@@ -15,9 +15,11 @@ class TablePartners extends Migration
     {
         Schema::create('partners', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('description');
-            $table->string('title');
-            $table->text('file_name');
+            $table->string('title_en');
+            $table->string('title_ar');
+            $table->string('text_en');
+            $table->string('text_ar');
+            $table->text('file_path');
             $table->timestamps();
         });
     }

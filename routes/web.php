@@ -15,150 +15,145 @@
 /****************************************************************************************/
 /* 						 			Web Sites 											*/
 /****************************************************************************************/
-Route::get('/', function(){
-	return redirect()->route('index',['locale'=>clang()]);
+Route::get('/', function () {
+	return redirect()->route('index', ['locale' => clang()]);
 });
-Route::prefix('{locale?}')->group(function(){
+Route::prefix('{locale?}')->group(function () {
 	/*****Admin/suscribe*****/
 	Route::post('subscribe', "WebSite\HomeController@subscribe")->name('subscribe');
 	/*****website/index*****/
 	Route::get('/', "WebSite\HomeController@index")->name('index');
 	/*****Admin/index*****/
-	Route::get('admin', function ($locale = "en") 
-	{
-	    return view('admin/index');
+	Route::get('admin', function ($locale = "en") {
+		return view('admin/index');
 	});
-	/*****website/about*****/
-	Route::get('/about',function($locale = "en")
-	{
+	/*****website/ *****/
+	Route::get('/about', function ($locale = "en") {
 		return view('website.about', [
-			'word'=>\App\TextWord::find(1),
-			'sections'=>\App\AboutSections::get(),
+			'word' => \App\TextWord::find(1),
+			'sections' => \App\AboutSections::get(),
+			'contacts' => \App\Contacts::first(),
 			'active' => 'About',
 		]);
 	})->name('about');
 	/*****website/sub-field/name*****/
-	Route::get('/sub-field/{id}',function($locale = "en", $id, \App\SubFields $sub_fields)
-	{
+	Route::get('/sub-field/{id}', function ($locale = "en", $id, \App\SubFields $sub_fields) {
 		return view('website.sub-field', [
-			'sub_field'=>$sub_fields->find($id),
+			'sub_field' => $sub_fields->find($id),
 			'active' => 'Fields',
 		]);
 	})->name('sub-field');
 	/*****website/contact*****/
-	Route::prefix('/contact')->name('contact.')->group(function(){
-		Route::get('/',function($locale = "en")
-		{
-			return view('website.contact',[
+	Route::prefix('/contact')->name('contact.')->group(function () {
+		Route::get('/', function ($locale = "en") {
+			return view('website.contact', [
 				'active' => 'Contact US',
+				'contacts' => \App\Contacts::first()
 			]);
 		})->name('index');
 		Route::post('/', "WebSite\HomeController@add")->name('add');
 	});
 
-	Route::prefix('/fields')->name('fields.')->group(function () 
-	{
-	    Route::get('/',function($locale = "en")
-	    {
+	Route::prefix('/fields')->name('fields.')->group(function () {
+		Route::get('/', function ($locale = "en") {
 			return view('website.fields', [
-				'fields'=>\App\Fields::get(),
+				'fields' => \App\Fields::get(),
 				'active' => 'Fields',
+				'contacts' => \App\Contacts::first()
 			]);
 		})->name('index');
 		/*****website/field/name*****/
-		Route::get('/{name}',function($locale = "en", $name, \App\Fields $fields)
-		{
+		Route::get('/{name}', function ($locale = "en", $name, \App\Fields $fields) {
 			return view('website.field', [
-				'field'=>$fields->where("title_en", $name)->first(),
+				'field' => $fields->where("title_en", $name)->first(),
 				'active' => 'Fields',
 			]);
 		})->name('view');
 	});
 
 	/*****website/products*****/
-	Route::prefix('/products')->name('products.')->group(function(){
+	Route::prefix('/products')->name('products.')->group(function () {
 		/*****website/products*****/
-		Route::get('/',function($locale = "en", \App\Products $products)
-		{
+		Route::get('/', function ($locale = "en", \App\Products $products) {
 			return view('website.products', [
-				'products'=>$products->get(),
+				'products' => $products->get(),
 				'active' => 'Products',
+				'contacts' => \App\Contacts::first()
 			]);
 		})->name('index');
 		/*****website/products/name*****/
-		Route::get('/{name}',function($locale = "en", $name, \App\Products $products)
-		{
+		Route::get('/{name}', function ($locale = "en", $name, \App\Products $products) {
 			return view('website.product', [
-				'product'=>$products->where("title_en", $name)->first(),
+				'product' => $products->where("title_en", $name)->first(),
 				'active' => 'Products',
 			]);
 		})->name('view');
 	});
 	/*****website/partners*****/
-	Route::prefix('/partners')->name('partners.')->group(function(){
-		Route::get('/',function($locale = "en", \App\Partners $partners)
-		{
+	Route::prefix('/partners')->name('partners.')->group(function () {
+		Route::get('/', function ($locale = "en", \App\Partners $partners) {
 			return view('website.partners', [
-				'partners'=>$partners->get(),
+				'partners' => $partners->get(),
 				'active' => 'Partners',
+				'contacts' => \App\Contacts::first()
 			]);
 		})->name('index');
 		/*****website/partners/name*****/
-		Route::get('/{name}',function($locale = "en", $name, \App\Partners $Partner)
-		{
+		Route::get('/{name}', function ($locale = "en", $name, \App\Partners $Partner) {
 			return view('website.partner', [
-				'partner'=>$Partner->where("title_en", $name)->first(),
+				'partner' => $Partner->where("title_en", $name)->first(),
 				'active' => 'Partners',
 			]);
 		})->name('view');
 	});
 
 	/*****website/achievements*****/
-	Route::prefix('/achievements')->name('achievements.')->group(function(){
-		Route::get('/',function($locale = "en", \App\Achievements $achievements)
-		{
+	Route::prefix('/achievements')->name('achievements.')->group(function () {
+		Route::get('/', function ($locale = "en", \App\Achievements $achievements) {
 			return view('website.achievements', [
-				'achievements'=>$achievements->get(),
+				'achievements' => $achievements->get(),
 				'active' => 'Achievements',
+				'contacts' => \App\Contacts::first()
 			]);
 		})->name('index');
 		/*****website/partners/id*****/
-		Route::get('/{id}',function($locale = "en", $id, \App\Achievements $achievements)
-		{
+		Route::get('/{id}', function ($locale = "en", $id, \App\Achievements $achievements) {
 			return view('website.achievement', [
-				'achievement'=>$achievements->find($id),
+				'achievement' => $achievements->find($id),
 				'active' => 'Achievements',
+				'contacts' => \App\Contacts::first()
 			]);
 		})->name('view');
 	});
 	/*****website/news*****/
-	Route::prefix('/news')->name('news.')->group(function(){
-		Route::get('/',function($locale = "en", \App\News $news)
-		{
+	Route::prefix('/news')->name('news.')->group(function () {
+		Route::get('/', function ($locale = "en", \App\News $news) {
 			return view('website.news', [
 				'active' => 'News',
-				'news'=>$news->get(),
+				'news' => $news->get(),
+				'contacts' => \App\Contacts::first()
 			]);
 		})->name('index');
 		/*****website/partners/id*****/
-		Route::get('/{id}',function($locale = "en", $id, \App\News $news)
-		{
+		Route::get('/{id}', function ($locale = "en", $id, \App\News $news) {
 			return view('website.new', [
-				'new'=>$news->find($id),
+				'new' => $news->find($id),
 				'active' => 'News',
+				'contacts' => \App\Contacts::first()
 			]);
 		})->name('view');
 	});
 	/*****website/Downloads*****/
-	Route::prefix('/downloads')->name('downloads.')->group(function(){
-		Route::get('/', function($locale = "en", \App\Downloads $downloads){
+	Route::prefix('/downloads')->name('downloads.')->group(function () {
+		Route::get('/', function ($locale = "en", \App\Downloads $downloads) {
 			return view('website.downloads', [
 				'active' => 'Downloads',
-				'downloads'=>$downloads->get(),
+				'downloads' => $downloads->get(),
+				'contacts' => \App\Contacts::first()
 			]);
 		})->name('index');
-		Route::get('/{id}', function($locale = "en", $id, \App\Downloads $downloads){
-			return response()->download('slider/'.$downloads->find($id)->path);
+		Route::get('/{id}', function ($locale = "en", $id, \App\Downloads $downloads) {
+			return response()->download('slider/' . $downloads->find($id)->path);
 		})->name('view');
 	});
 	Auth::routes();

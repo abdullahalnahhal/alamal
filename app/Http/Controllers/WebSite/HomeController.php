@@ -10,17 +10,23 @@ use App\Slider;
 use App\TextWord;
 use App\ContactUs;
 use App\Subscribes;
+use App\Contacts;
 
 class HomeController extends Controller
 {
     public function index()
     {
-    	$slides = Slider::all();
-    	return view("website.index", [
-    		'slides'=> $slides,
-            'active'=>'Index',
-    		'about_text_word'=>TextWord::find(1)
-    	]);
+        $slides = Slider::all();
+
+        $contacts = Contacts::first();
+
+
+        return view("website.index", [
+            'slides' => $slides,
+            'active' => 'Index',
+            'contacts' => $contacts,
+            'about_text_word' => TextWord::find(1)
+        ]);
     }
     public function add(Request $request)
     {

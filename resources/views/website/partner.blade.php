@@ -52,7 +52,7 @@
                     @foreach($partner->products as $product)
                     <!-- Service -->
                     <div class="service text-{{getStyle(cLang())['dir-full']}}">
-                        <div class="service_icon"><img src="{{asset("slider/$product->file_name")}}" class="svg" alt=""></div>
+                        <div class="service_icon"><img src="{{asset("storage/$product->file_path")}}" class="svg" alt=""></div>
                         <div class="service_title">{{$product->{'title_'.cLang()} }}</div>
                         <div class="service_text">
                             <p>{{$product->description}}</p>
